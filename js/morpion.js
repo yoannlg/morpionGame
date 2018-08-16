@@ -1,98 +1,53 @@
-const aCase = document.querySelectorAll('.case');
-
+const cases = document.querySelectorAll('.case');
+const casesArray = Array.from(cases);
 
 //initiation des différentes variables
 let coup = 0;
-let circleOrCross = '';
+let stop = false;
 
+//fonction qui déterminera quel joueurs joue en fonction du tour (si pair alors joueur rond si impaire joueur croix);
 const tour = () => {
     return coup % 2 === 0 ? 'circle' : 'cross';
 }
+const isWin = (elem) =>{
+    for (let i = 0; i < casesArray.length; i++) {
 
+        let classTest = casesArray[i].classList.contains('circle');
+
+    //    if(casesArray[0].classList.contains('circle')&&
+    //     casesArray[1].classList.contains('circle')&&
+    //     casesArray[2].classList.contains('circle')){
+            
+    //    };
+
+
+//     switch (???) {
+//         case casesArray[0].classList.contains('circle'):
+//         console.log("TEEEEEESSSSST");
+//             break;
+
+//         default:
+//             break;
+//         }
+    }
+               
+
+    if(elem.classList.contains('circle')){
+        return stop = true;
+    }
+}
+
+//fonction de jeu qui récupère notre event liée au listener('click)
 const play = (e) =>{
+    console.log("Evenement vaut : "+e);
     const element = e.target;
-
      if(!element.classList.contains('circle'||'cross')){
         element.classList.add(tour());
+        isWin(element);
         coup++;
      }
 }
 
+cases.forEach(elem => elem.addEventListener('click', play));
 
-aCase.forEach(elem => elem.addEventListener('click', play));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// damier.addEventListener('click',function(event){
-//     element = event.target;
-//     console.log(element);
-    
-//     if (tour % 2 === 0) {
-//         element.classList.add("circle");
-//         tour++;
-//     }
-//     else{
-//         element.classList.add("cross");
-//         tour++;}
-// });
-
-
-
-//lancement des différentes fonction tant qu'on est pas à stop true
-// while(!stop){
-//     play();
-// }
-
-
-
-// let win = ()=>{
-//     for (let i = 0; i < aCase.length; i++) {
-//         const element = aCase[i];
-        
-//         if(aCase[i].classList.contains("circle")){
-//             console.log("stooooop");
-//         }
-//         else{console.log("prout")};
-//     }
-// }
-
-
-
-
-
-
-
-//test anthony welc
-
-// const cases = document.querySelectorAll('.case');
-// let coup = 0;
-
-
-// const tour = ()=>{
-//     coup++;
-//     return i % 2 === 0 ? 'circle' : 'cross'; 
-// }
-
-
-// const play = () => {
-
-// }
-
-// cases.forEach(elem => elem.addEventListener('click', play));
 
