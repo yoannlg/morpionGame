@@ -75,10 +75,10 @@ const isCross = ()=>{
 
 
 const isWin = () =>{
-    for (let i = 0; i < casesArray.length; i++) {
+
        if(isCircle() || isCross()){
            return true;
-       };
+       }
 
     // switch (???) {
     //     case casesArray[0].classList.contains('circle'):
@@ -88,12 +88,31 @@ const isWin = () =>{
     //     default:
     //         break;
     //     }
+}
+
+const isFull = () =>{
+    if((casesArray[0].classList.contains('circle') || casesArray[0].classList.contains('cross')) && 
+    (casesArray[1].classList.contains('circle') || casesArray[1].classList.contains('cross')) &&
+    (casesArray[2].classList.contains('circle')|| casesArray[2].classList.contains('cross'))&&
+    (casesArray[3].classList.contains('circle')|| casesArray[3].classList.contains('cross'))&&
+    (casesArray[4].classList.contains('circle')|| casesArray[4].classList.contains('cross'))&&
+    (casesArray[5].classList.contains('circle')|| casesArray[5].classList.contains('cross'))&&
+    (casesArray[6].classList.contains('circle')|| casesArray[6].classList.contains('cross'))&&
+    (casesArray[7].classList.contains('circle')|| casesArray[7].classList.contains('cross'))&&
+    (casesArray[8].classList.contains('circle')|| casesArray[8].classList.contains('cross'))){
+        return true;
     }
+}
+
+const isNull= ()=>{
+        if(!isWin() && isFull()){
+            return true;
+        }
 }
 
 //fonction de jeu qui récupère notre event liée au listener('click)
 const play = (e) =>{
-    console.log("Evenement vaut : "+e);
+    console.log("Evenement vaut : "+e.type);
     const element = e.target;
 
      if(!element.classList.contains('circle'||'cross') && !isWin()){
@@ -105,13 +124,16 @@ const play = (e) =>{
         if(isWin()){
             console.log("c'est gagner et ouai ouai");
             alert("BRAVO JEANNOT");
-            window.location.reload();
         }
+        else if (isNull()){
+            console.log("Match null?");
+            alert("Aussi nul l'un que l'autre!^^");
+        }
+        
      },500);
      
 
 }
 
 cases.forEach(elem => elem.addEventListener('click', play));
-
 

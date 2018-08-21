@@ -30,8 +30,6 @@ header h1{
 	min-width: 150px;
 	height: 150px;
 	border: 2px solid green;
-
-
 	background-size: cover;
 	display: flex;
 	justify-content: center;
@@ -52,4 +50,7 @@ header h1{
 .cross{
 	background: url("../images/cross.jpeg") no-repeat center;
 	background-size: 100px;
+}
+.mouseDown{
+	background-color: red;
 }
