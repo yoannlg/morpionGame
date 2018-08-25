@@ -1,6 +1,7 @@
 const cases = document.querySelectorAll('.case');
 const casesArray = Array.from(cases);
 
+
 //initiation des différentes variables
 let coup = 0;
 let stop = false;
@@ -77,6 +78,7 @@ const isCross = ()=>{
 const isWin = () =>{
 
        if(isCircle() || isCross()){
+           stop = true;
            return true;
        }
 
@@ -106,34 +108,65 @@ const isFull = () =>{
 
 const isNull= ()=>{
         if(!isWin() && isFull()){
+            stop = true;
             return true;
         }
+}
+
+const refesh = () =>{
+    cases.forEach(aCase => {
+        aCase.classList.remove('circle');
+        aCase.classList.remove('cross');
+    });
+    stop = false;
 }
 
 //fonction de jeu qui récupère notre event liée au listener('click)
 const play = (e) =>{
     console.log("Evenement vaut : "+e.type);
     const element = e.target;
-
-     if(!element.classList.contains('circle'||'cross') && !isWin()){
-        element.classList.add(tour());
-        coup++;
-     }
+        if(!element.classList.contains('circle'||'cross') && !stop){
+           element.classList.add(tour());
+           coup++;
+        }
      //timeOut qui permet d'afficher l'alert apres l'affichage du rond ou de la croix sans ça l'alert apparait avant l'affichage du dernier rond ou croix permetant la victoire
+     
      setTimeout(()=>{
         if(isWin()){
             console.log("c'est gagner et ouai ouai");
-            alert("BRAVO JEANNOT");
+            if(confirm("C'est Gagné!!\rVoulez vous rejouer?")){
+                console.log("on supprime tout et on recommence");
+                refesh();
+                
+            };
         }
         else if (isNull()){
             console.log("Match null?");
-            alert("Aussi nul l'un que l'autre!^^");
+            alert("Aussi nul l'un que l'autre!^");
         }
         
-     },500);
-     
-
+     },500);   
 }
 
-cases.forEach(elem => elem.addEventListener('click', play));
+cases.forEach(aCase => aCase.addEventListener('click', play));
+
+
+
+
+//parti css
+
+cases.forEach(aCase => aCase.addEventListener('mousedown', (aCase)=>{
+    aCase.target.classList.add('push');
+    aCase.target.classList.add('test');
+
+    
+}));
+
+const removeTransition = (e)=>{
+e.target.classList.remove('push');
+e.target.classList.remove('test');
+}
+
+
+cases.forEach(aCase => aCase.addEventListener('mouseup', removeTransition));
 

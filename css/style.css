@@ -1,6 +1,7 @@
 body{
 	width: 100%;
 	height: 100%;
+	font-size: 62.5%;
 }
 
 /* HEADER */
@@ -19,38 +20,53 @@ header h1{
 	justify-content: center;
 }
 .damier{
+	display: flex;
+	flex-wrap: wrap;
+	flex:0 0 31rem;
+	justify-content: center;
+	padding: 1rem;
 	border: 2px solid blue;
 }
-.row{
+/* .row{
 	display: flex;
 	justify-content: space-around;
-	border: 2px solid red;
-}
+	
+} */
 .case{
-	min-width: 150px;
-	height: 150px;
-	border: 2px solid green;
-	background-size: cover;
 	display: flex;
+	flex:1 1 0;
 	justify-content: center;
 	align-items: center;
-	color: white;
 	flex-flow: wrap;
+	height: 150px;
+	max-width: 150px;
+	min-width: 150px;
+	border: 2px solid green;
+	background-size: cover;
+	color: white;
+	margin: 5px;
 	font-size: 20px;
 	font-weight: bold;
+	box-shadow: 6px 6px 5px darkgrey;
 	/*border: 2px solid blue;*/
-	flex:1 1 0;
+	transition: all 0.2s;
 }
 
 .circle{
 	background: url("../images/circle.png") no-repeat center;
-	background-size: 100px;
+	background-size: 6rem;
 }
 
 .cross{
 	background: url("../images/cross.jpeg") no-repeat center;
-	background-size: 100px;
+	background-size: 5rem;
 }
 .mouseDown{
 	background-color: red;
+}
+.push{
+	transform: scale(0.9);
+}
+.test{
+	background-color: lightgray;
 }
